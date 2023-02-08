@@ -8,11 +8,11 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.Map;
 
-public class Diccionario implements com.curso.diccionario.Diccionario {
+public class DiccionarioImpl implements Diccionario {
     
     private final Map<String,List<String>> terminos;
     
-    public Diccionario (Map<String,List<String>> terminos){
+    public DiccionarioImpl (Map<String,List<String>> terminos){
         this.terminos = terminos;
     }
     
@@ -26,11 +26,11 @@ public class Diccionario implements com.curso.diccionario.Diccionario {
     
     public List<String> getSugerencias(String palabra){
         
-        palabra = Utilidades.normalizarPalabra(palabra);
+        final String palabraNormalizada = Utilidades.normalizarPalabra(palabra);
         
         return this.terminos.keySet()                                                                                                    // Me quedo con los términos
                               .parallelStream()                                                                                          // Preparo las CPUs para freir huevos
-                              .map(     termino     ->  new Sugerencia(termino, Utilidades.diferenciaEntrePalabras(termino, palabra))  ) // Calculo las distancias con la palabra preguntada
+                              .map(     termino     ->  new Sugerencia(termino, Utilidades.diferenciaEntrePalabras(termino, palabraNormalizada))  ) // Calculo las distancias con la palabra preguntada
                               .filter(  sugerencia  ->  sugerencia.puntuacion <= Utilidades.DISTANCIA_MAXIMA                           ) // Filtro aquellas que tengan una distancia razonable
                               .sorted(  Comparator.comparing(  sugerencia  ->  sugerencia.puntuacion )                                 ) // Las ordeno por las más cercanas
                               .limit(   Utilidades.SUGERENCIAS_MAXIMAS                                                                 ) // Me quedo con unas pocas

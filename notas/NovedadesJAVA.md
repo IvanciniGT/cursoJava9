@@ -56,3 +56,4 @@
     - Copiar recursos de unas carpetas a otras
     - Empaquetar
     - y más...
+- String : Función lines() -> Stream con las lineas

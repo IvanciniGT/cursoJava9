@@ -4,16 +4,18 @@ import com.curso.diccionario.SuministradorDeDiccionarios;
 import com.curso.diccionario.Diccionario;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.Map;
+import java.util.List;
 import java.util.WeakHashMap;
 
-public class SuministradorDeDiccionarios implements com.curso.diccionario.SuministradorDeDiccionarios {
+public class SuministradorDeDiccionariosImpl implements SuministradorDeDiccionarios {
     
     // Cual es el concepto de este MAPA?   CACHE ! 
     // La persistencia está en un fichero
     private final Map<String, Diccionario> diccionariosDisponibles = new WeakHashMap<>();
     
-    public SuministradorDeDiccionarios(){
+    public SuministradorDeDiccionariosImpl(){
         // OPCION 1: Cargar los diccionarios en constructor.NO LA QUEREMOS
         // Problemas: Más consumo de memoria quizás innecesario. 
         // Y mayor tiempo de arranque que no se si será necesario tampoco
@@ -21,11 +23,11 @@ public class SuministradorDeDiccionarios implements com.curso.diccionario.Sumini
     }
     
     private boolean cargarDiccionario(String idioma){
-        boolean cargado = diccionariosDisponibles.contains(idioma);
+        boolean cargado = diccionariosDisponibles.containsKey(idioma);
         if (! cargado){
-            Optional<Diccionario> diccionarioLeido = Utilidades.cargarDiccionario(idioma);
+            Optional<Map<String, List<String>>> diccionarioLeido = Utilidades.cargarDiccionario(idioma);
             if(diccionarioLeido.isPresent()){
-                diccionariosDisponibles.put(idioma, diccionarioLeido.get());
+                diccionariosDisponibles.put(idioma, new DiccionarioImpl(diccionarioLeido.get()));
                 cargado = true;
             }
         }
