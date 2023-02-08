@@ -23,6 +23,19 @@ public class Diccionario implements com.curso.diccionario.Diccionario {
     
     public List<String> getSugerencias(String palabra){
         //Utilidades.diferenciaEntrePalabras(String palabra1, String palabra2)
+        
+        // Esa funcion la quiero aplicar sobre: todos los terminos del diccionario
+        // Esa función me da numeritos
+        
+        // Quedarme con las que no sean mayores de una cantidad > 2
+        manano
+        manzano 1
+
+        manzana 2
+        mañana  2
+        // Ordenar los terminos por su puntuación
+        // Limitar la lista: 10 mejores
+        
     }
     
 }
