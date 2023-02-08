@@ -34,6 +34,8 @@ public interface Utilidades {
                                    );
                 return Optional.of(terminosCargados);
             } catch(Exception e){
+                System.out.println("Error");
+                e.printStackTrace();
                 // Interesaría mirar si la excepcion es por que el diccionario no tenga un buen formato
             }
         return Optional.empty();
