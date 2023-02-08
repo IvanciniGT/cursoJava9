@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.Streams;
 
 public interface Utilidades {
  
@@ -30,6 +31,9 @@ public interface Utilidades {
                                    .collect(     Collectors.toMap(                              // Convertir en un MapEntry      
                                                                         partes -> normalizarPalabra(partes[0]),    // Clave es el termino
                                                                         partes -> Arrays.asList(partes[1].split("\\|")) // La definicion es el resto, que separamos por |
+                                                                        (definicion1, definicion2) -> Stream.of(definicion1,definicion2)
+                                                                                                            .flatMap(Collections::stream)
+                                                                                                            .collect(Collectors.toList())
                                                                  )
                                    );
                 return Optional.of(terminosCargados);
