@@ -96,3 +96,28 @@ Y cual se tomará?
                                                                           Inyección de dependencias
 
 ESO ES UNA APP MODULAR Y MANTENIBLE !
+
+
+## Estructura de carpetas y Archivos:
+src
+├── app
+│   ├── com
+│   │   └── curso
+│   │       └── app
+│   │           └── App.java
+│   └── module-info.java
+├── diccionario
+│   ├── com
+│   │   └── curso
+│   │       └── diccionario
+│   │           ├── Diccionario.java
+│   │           └── SuministradorDeDiccionarios.java
+│   └── module-info.java
+└── diccionarioFicheros
+    ├── com
+    │   └── curso
+    │       └── diccionario
+    │           └── ficheros
+    │               ├── Diccionario.java
+    │               └── SuministradorDeDiccionarios.java
+    └── module-info.java
