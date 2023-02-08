@@ -26,6 +26,7 @@
   Para qué sirve esto? Es útil?
 - Capacidad de crear funciones de instancia con código por defecto
 - Optional
+- La capacidad de definir anotaciones en los argumentos de una función LOMBOK (@NonNull)
 
 ## JAVA 9
 
