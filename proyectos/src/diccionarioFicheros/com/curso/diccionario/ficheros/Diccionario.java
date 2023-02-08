@@ -4,6 +4,9 @@ import com.curso.diccionario.Diccionario;
 
 import java.util.Optional;
 import java.util.List;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.Map;
 
 public class Diccionario implements com.curso.diccionario.Diccionario {
     
@@ -22,19 +25,27 @@ public class Diccionario implements com.curso.diccionario.Diccionario {
     }
     
     public List<String> getSugerencias(String palabra){
-        //Utilidades.diferenciaEntrePalabras(String palabra1, String palabra2)
         
-        // Esa funcion la quiero aplicar sobre: todos los terminos del diccionario
-        // Esa función me da numeritos
+        palabra = Utilidades.normalizarPalabra(palabra);
         
-        // Quedarme con las que no sean mayores de una cantidad > 2
-        manano
-        manzano 1
-
-        manzana 2
-        mañana  2
-        // Ordenar los terminos por su puntuación
-        // Limitar la lista: 10 mejores
+        return this.terminos.keySet()                                                                                                    // Me quedo con los términos
+                              .parallelStream()                                                                                          // Preparo las CPUs para freir huevos
+                              .map(     termino     ->  new Sugerencia(termino, Utilidades.diferenciaEntrePalabras(termino, palabra))  ) // Calculo las distancias con la palabra preguntada
+                              .filter(  sugerencia  ->  sugerencia.puntuacion <= Utilidades.DISTANCIA_MAXIMA                           ) // Filtro aquellas que tengan una distancia razonable
+                              .sorted(  Comparator.comparing(  sugerencia  ->  sugerencia.puntuacion )                                 ) // Las ordeno por las más cercanas
+                              .limit(   Utilidades.SUGERENCIAS_MAXIMAS                                                                 ) // Me quedo con unas pocas
+                              .map(     sugerencia  ->  sugerencia.termino                                                             ) // Elimino información de puntuación/distancia
+                              .collect( Collectors.toList()                                                                            ); // Convierto en una lista
+    }
+    
+    private static class Sugerencia {
+        String termino;
+        int puntuacion;
+        
+        public Sugerencia(String termino,int puntuacion){
+            this.termino=termino;
+            this.puntuacion=puntuacion;
+        }
         
     }
     

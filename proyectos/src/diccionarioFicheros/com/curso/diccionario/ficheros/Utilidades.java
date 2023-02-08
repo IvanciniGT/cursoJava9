@@ -6,6 +6,9 @@ import java.util.Objects;
 
 public interface Utilidades {
  
+    public static int DISTANCIA_MAXIMA    = 2 ;
+    public static int SUGERENCIAS_MAXIMAS = 8 ;
+ 
     public static Optional<Diccionario> cargarDiccionario(String idioma){
         
     }
