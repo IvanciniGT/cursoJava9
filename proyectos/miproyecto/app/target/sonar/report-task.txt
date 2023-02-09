@@ -1,0 +1,6 @@
+projectKey=com.curso:app
+serverUrl=http://localhost:9000
+serverVersion=9.9.0.65466
+dashboardUrl=http://localhost:9000/dashboard?id=com.curso%3Aapp
+ceTaskId=AYY26Pf2kbU60FeFPjU5
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYY26Pf2kbU60FeFPjU5
