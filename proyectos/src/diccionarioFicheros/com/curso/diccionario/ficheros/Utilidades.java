@@ -17,7 +17,7 @@ public interface Utilidades {
     public static int DISTANCIA_MAXIMA    = 2 ;
     public static int SUGERENCIAS_MAXIMAS = 8 ;
  
-    public static Optional<Map<String, List<String>>> cargarDiccionario(String idioma){
+    public static Optional<Map<String, List<String>>> cargarDiccionario(String idioma){ // Java 9
         String nombreDelFichero="diccionario."+idioma+".txt";
         URL urlFichero = Utilidades.class.getClassLoader().getResource( nombreDelFichero );
         if ( urlFichero != null )
@@ -44,11 +44,10 @@ public interface Utilidades {
                 // Interesaría mirar si la excepcion es por que el diccionario no tenga un buen formato
             }
         return Optional.empty();
-        
     }
     
     public static String normalizarPalabra(String palabra){
-        return Objects.requireNonNull(palabra.toLowerCase());
+        return Objects.requireNonNull(palabra).toLowerCase();
     }
     
     public static int diferenciaEntrePalabras(String palabra1, String palabra2){

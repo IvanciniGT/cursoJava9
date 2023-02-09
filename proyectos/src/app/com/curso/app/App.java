@@ -49,7 +49,7 @@ public class App {
         */
         
         // Buscar la palabra y mostrar la información relevante
-        
+        System.out.println("Ya tengo diccionario. Busco la palabra.");
         if( miDiccionario.existe(palabra) ){
             System.out.println("La palabra "+palabra+" existe.");
             System.out.println("Significados:");
